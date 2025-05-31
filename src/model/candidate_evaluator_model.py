@@ -22,14 +22,14 @@ class CandidateEvaluateResponse(BaseModel):
     and a summary of the video content (optional).
     """
     classification: str = Field(..., description="Classification of the accent")
-    confidence: float = Field(..., description="Confidence score in English accent")
+    confidence: str = Field(..., description="Confidence score in English accent")
     summary: Optional[str] = Field(None, description="A short summary of the video content")
 
     class Config:
         json_schema_extra = {
             "example": {
                 "classification": "Scotland",
-                "confidence": 100.00,
+                "confidence": "100%",
                 "summary": "A short summary of the video"
             }
         }

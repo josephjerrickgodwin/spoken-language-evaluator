@@ -123,8 +123,8 @@ class VideoDownloaderService:
         # Initialize the yt_dlp parameters
         ydl_options = {
             'format': 'bestvideo+bestaudio/best',
-            'outtmpl': cache_path,
-            'merge_output_format': f'.{self.video_extension}',
+            'outtmpl': cache_path.replace(self.video_extension, "%(ext)s"),
+            'merge_output_format': f'{self.video_extension}',
             'retries': self.retries,
             'noplaylist': self.noplaylist,
             'quiet': self.quiet,
@@ -148,12 +148,11 @@ class VideoDownloaderService:
                 return None
 
             # Return the file path of the downloaded video, if the download is successful.
-            downloaded_file = info.get('filepath') or info.get('_format_filepath')
-            if downloaded_file and os.path.exists(downloaded_file):
+            if os.path.exists(cache_path):
                 logger.info(
-                    f"Loom video downloaded successfully to: {downloaded_file}"
+                    f"Loom video downloaded successfully to: {cache_path}"
                 )
-                return downloaded_file
+                return cache_path
 
             logger.error(
                 f"yt-dlp completed, but could not determine downloaded file path for {url}"
