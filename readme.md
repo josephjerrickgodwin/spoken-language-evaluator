@@ -1,6 +1,6 @@
 # Candidate English Accent Evaluator
 
-A FastAPI service for evaluating spoken language, including accent identification and language processing, built with FastAPI and leveraging state-of-the-art speech and language models.
+A FastAPI service for evaluating spoken language, including accent identification and language processing. This helps differentiate English speakers among the other candidates and further classify their accents with the corresponding geogropical information with a confidence score. A personalized summary is generated for further understanding the key points of the video.
 
 ## Features
 
