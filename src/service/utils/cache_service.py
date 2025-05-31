@@ -18,14 +18,14 @@ class CacheService:
             cls._instance = super(CacheService, cls).__new__(cls, *args, **kwargs)
         return cls._instance
 
-    def __init__(self, base_cache_dir: str = "cache"):
+    def __init__(self, base_cache_dir_name: str = "cache"):
         """
         Initialize the CacheService.
 
         Args:
-            base_cache_dir (str): The base directory where session cache folders are stored.
+            base_cache_dir_name (str): The base directory name where session cache folders are stored.
         """
-        self.base_cache_dir = os.path.abspath(base_cache_dir)
+        self.base_cache_dir = os.path.join(os.getcwd(), base_cache_dir_name)
         os.makedirs(self.base_cache_dir, exist_ok=True)
         logger.debug(
             f"Initialized CacheService with base_cache_dir: {self.base_cache_dir}"

@@ -89,7 +89,7 @@ class EnglishAccentClassifierService:
             _, score, _, accent = self.model.classify_file(audio_file_path)
 
             # Convert the tensor to string
-            score = round(score.item(), 2) * 100
+            score = f'{round(score.item(), 2) * 100}%'
 
             # Extract the accent
             accent: str = accent[0].capitalize()
